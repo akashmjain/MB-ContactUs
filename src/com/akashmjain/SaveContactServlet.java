@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.regex.Pattern;
 
@@ -13,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/contactus/save")
 public class SaveContactServlet extends HttpServlet {
@@ -20,12 +20,10 @@ public class SaveContactServlet extends HttpServlet {
 	public static final int CONTACT_MAX_FULL_NAME_SIZE = 0;
 	public static final int CONTACT_MAX_COMMENT_SIZE = 10;
 	private static final long serialVersionUID = 1L;
-	
 	private static final String JDBC_DRIVER = "org.postgresql.Driver";
 	private static final String DB_URL = "jdbc:postgresql://localhost:5432/contact_us";
 	private static final String DB_USER_NAME = "postgres";
 	private static final String DB_USER_PASSWORD = "password";
-
 	
    	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -43,6 +41,8 @@ public class SaveContactServlet extends HttpServlet {
 				saveData(fullName, email, comment);
 				out.println("data saved successfully");
 			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("error", "Please Enter valid Data");
 				response.sendRedirect("/ContactUs/contactus");
 			}
 		} catch (Exception e) {
@@ -51,6 +51,7 @@ public class SaveContactServlet extends HttpServlet {
 			out.close();
 		}
 	}
+	
 	private void saveData(String fullName, String email, String comment) {
 		String query = "insert into contacts(name, email, message, is_archived) values "
 				+ "('"+fullName+"','"+email+"', '"+comment+"', false);";
@@ -60,8 +61,7 @@ public class SaveContactServlet extends HttpServlet {
             conn = DriverManager.getConnection(DB_URL, DB_USER_NAME, DB_USER_PASSWORD);
             Statement statement = conn.createStatement();
             int code = statement.executeUpdate(query);
-            
-            
+            conn.close();   
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());

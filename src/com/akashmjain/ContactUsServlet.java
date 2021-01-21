@@ -20,8 +20,6 @@ public class ContactUsServlet extends HttpServlet {
 		String url = "/contactus.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.forward(request, response);
-//		PrintWriter out = response.getWriter();
-//		out.println("Hello");
 	}	
 
 }
