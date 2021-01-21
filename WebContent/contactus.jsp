@@ -33,9 +33,9 @@
             background-color: #0B0B0B;
             color: white;
         }
-        .text-input::selection {
-            border-color:tomato;
-            
+        .text-input::selection .text-input::-moz-selection {
+            color: white;
+            background: grey;
         }
         .submit-btn {
             width: 100%;
