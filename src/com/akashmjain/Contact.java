@@ -3,11 +3,14 @@ package com.akashmjain;
 import java.io.Serializable;
 
 public class Contact implements Serializable {
+	private static final String ARCHIVE_SET = "ARCHIVE";
+	private static final String ARCHIVE_UNSET = "UN-ARCHIVE";
 	private String contactId;
 	private String fullName;
 	private String email;
 	private String comment;
 	private boolean isArchived;
+	private String archiveButtonText;
 	
 	public Contact() {
 		this.contactId = "";
@@ -15,6 +18,7 @@ public class Contact implements Serializable {
 		this.email = "";
 		this.comment = "";
 		this.isArchived = false;
+		this.archiveButtonText = "ARCHIVE";
 	}
 	public Contact(String contactId, String fullName, String email, String comment) {
 		this.contactId = contactId;
@@ -50,8 +54,12 @@ public class Contact implements Serializable {
 		return isArchived;
 	} 
 	public void setIsArchived(boolean isArchived) {
+		this.archiveButtonText = isArchived ?  ARCHIVE_UNSET : ARCHIVE_SET;
 		this.isArchived = isArchived;
 	}
+	public String getArchiveButtonText() {
+		return this.archiveButtonText;
+	} 
 	@Override
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", fullName=" + fullName + ", email=" + email + ", comment="
