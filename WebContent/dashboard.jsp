@@ -33,7 +33,7 @@
     .email {
         color: yellow;
         padding: 10px;
-        font-size: 1.2rem;
+        font-size: 2.0rem;
     }
     .archive {
         color: white;
@@ -59,7 +59,6 @@
     .links {
         display: flex;
         justify-content: space-between;
-        
     }
 </style>
 <title>Admin Dashboard</title>

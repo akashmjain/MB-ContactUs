@@ -6,9 +6,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,9 @@ public class DashboardServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext context =  getServletContext();
+		String uname = context.getInitParameter("username");
+		String pwd = context.getInitParameter("password");
 		List<Contact> contactList = getContacts();
 		String dashboardURL = "/dashboard.jsp";
 		request.setAttribute("contacts", contactList);
@@ -66,6 +71,11 @@ public class DashboardServlet extends HttpServlet {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
         }
+		contactList.sort(new Comparator<Contact>() {
+			public int compare(Contact c1, Contact c2) {
+				return c1.getContactId().compareTo(c2.getContactId());
+			}
+		});
 		return contactList;
 	}
 }

@@ -64,7 +64,7 @@
             </span>
             <span>
                 <label>Email </label>
-                <input name="email" class="text-input" type="text">
+                <input name="email" class="text-input" type="email">
             </span>
             <span>
                 <label>Comment</label>
@@ -72,9 +72,7 @@
             </span>
             <input class="submit-btn" type="submit" value="SUBMIT">
         </form>
-        <% if(request.getSession().getAttribute("error").equals("")) { } else { %> 
-        	<h4 style="color: red"> Please Enter Valid Information </h4>
-        <%}%>
+        
     </div>
 </body>
 </html>

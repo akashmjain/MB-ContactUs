@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/contactus/save")
 public class SaveContactServlet extends HttpServlet {
@@ -39,9 +39,7 @@ public class SaveContactServlet extends HttpServlet {
 				comment.length() > CONTACT_MAX_COMMENT_SIZE) {
 				saveData(fullName, email, comment);
 				out.println("data saved successfully");
-			} else {
-				HttpSession session = request.getSession();
-				session.setAttribute("error", "Please Enter valid Data");
+			} else {	
 				response.sendRedirect("/ContactUs/contactus");
 			}
 		} catch (Exception e) {

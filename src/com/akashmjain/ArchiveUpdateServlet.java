@@ -38,7 +38,6 @@ public class ArchiveUpdateServlet extends HttpServlet {
 	}
 	private void updateArchiveStatus(String contactId) {
 		String getEntry = "select * from contacts where id="+contactId+";";		
-		
 		Connection conn;
 		try {
             Class.forName(JDBC_DRIVER);
