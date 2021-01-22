@@ -20,7 +20,7 @@
             width: 50rem;
             margin-top: 5%;
         }
-        .text-input, .pwd-input {
+        .uname-input, .pwd-input {
             font-size: 1.5rem;
             padding: 2%;
             background-color: #0B0B0B;
@@ -52,11 +52,11 @@
     </style>
 </head>
 <body>
-	<form class="main" action="#" method="post">
+	<form class="main" action="login" method="post">
         <h1 class="heading">Admin Login Page</h1>
         <span class="field">
             <label>Username</label>
-            <input name="full_name" class ="text-input" type="text" >
+            <input name="username" class ="uname-input" type="text" >
         </span>
         <span class="field">
             <label>Password</label>

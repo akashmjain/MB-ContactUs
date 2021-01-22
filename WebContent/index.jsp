@@ -37,7 +37,7 @@
 </head>
 <body>
 	<div id="menu">
-		<form action="admin/contactus/requests" method="post">
+		<form action="admin/login" method="post">
 			<input type="submit" value="Admin Login">
 		</form>
 		<form action="contactus" method="post">

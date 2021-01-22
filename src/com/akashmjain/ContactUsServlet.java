@@ -18,9 +18,7 @@ public class ContactUsServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/contactus.jsp";
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
-		requestDispatcher.forward(request, response);
+		request.getRequestDispatcher(url).forward(request, response);
 	}	
 
 }

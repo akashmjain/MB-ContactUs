@@ -1,6 +1,7 @@
 package com.akashmjain;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ShowDataServlet
@@ -38,15 +40,19 @@ public class DashboardServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context =  getServletContext();
-		String uname = context.getInitParameter("username");
-		String pwd = context.getInitParameter("password");
-		List<Contact> contactList = getContacts();
-		String dashboardURL = "/dashboard.jsp";
-		request.setAttribute("contacts", contactList);
-		RequestDispatcher rd = request.getRequestDispatcher(dashboardURL);
-		rd.forward(request, response);
+		ServletContext context = getServletContext();
+//		if()
+			String dashboardURL = "/dashboard.jsp";
+			List<Contact> contactList = getContacts();
+			request.setAttribute("contacts", contactList);
+			RequestDispatcher rd = request.getRequestDispatcher(dashboardURL);
+			rd.forward(request, response);	
+		// else
+			PrintWriter out = response.getWriter();
+			out.println("Wrong credentials");
+		
 	}
+	
 	private List<Contact> getContacts() {
 		String query = "select * from contacts;";
 		List<Contact> contactList = new ArrayList<>();
@@ -78,4 +84,5 @@ public class DashboardServlet extends HttpServlet {
 		});
 		return contactList;
 	}
+	
 }
