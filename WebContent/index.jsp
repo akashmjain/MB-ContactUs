@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="menu">
-		<form action="admin/login" method="post">
+		<form action="admin/contactus/requests" method="post">
 			<input type="submit" value="Admin Login">
 		</form>
 		<form action="contactus" method="post">
