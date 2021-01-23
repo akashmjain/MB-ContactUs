@@ -57,7 +57,7 @@
 	<div class="main">
         <h1>Contact Us</h1>
         <p>Please fill this form in decent manner</p>
-        <form action="contactus/save" method="post">
+        <form action="contactus" method="post">
             <span>
                 <label>Full Name </label>
                 <input name="full_name" class ="text-input" type="text">
