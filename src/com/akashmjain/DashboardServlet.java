@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.akashmjain.beans.Contact;
+
 /**
  * Servlet implementation class ShowDataServlet
  */
@@ -31,7 +33,6 @@ public class DashboardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
 		HttpSession session = request.getSession();
-		
 		if(session.getAttribute("username") != null) {
 			String dashboardURL = "/dashboard.jsp";
 			List<Contact> contactList = DatabaseHelper.getContacts();
@@ -39,11 +40,7 @@ public class DashboardServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(dashboardURL);
 			rd.forward(request, response);
 		} else {
-			
+			response.getWriter().println("Please Login First");
 		}
-		
 	}
-	
-	
-	
 }

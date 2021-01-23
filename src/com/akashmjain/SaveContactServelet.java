@@ -9,27 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.akashmjain.beans.Contact;
+
 @WebServlet("/contactus/save")
 public class SaveContactServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String fullName = request.getParameter("full_name");
-		String email = request.getParameter("email");
-		String comment = request.getParameter("comment");
-		PrintWriter out = response.getWriter();
-		out = response.getWriter();
-		if(DatabaseHelper.saveContactInformation(fullName, email, comment)) {
-			out.println("data saved successfully");
+		Contact contact = new Contact();
+		contact.setFullName(request.getParameter("full_name"));
+		contact.setEmail(request.getParameter("email"));
+		contact.setComment(request.getParameter("comment"));
+		contact.setIsArchived(false);
+		
+		if(DatabaseHelper.saveContactInformation(contact)) {
+			response.getWriter().println("data saved successfully");
 		}
 		else {
-			out.println("Internal Error Occured please try again after some time");
+			response.getWriter().println("Internal Error Occured please try again after some time");
 		}
-		
-
 	}
 }

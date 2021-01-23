@@ -1,4 +1,4 @@
-package com.akashmjain;
+package com.akashmjain.beans;
 
 import java.io.Serializable;
 

@@ -19,11 +19,11 @@ public class ArchiveUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String contactId = request.getParameter("contact_id");
 		PrintWriter	out = response.getWriter();
 		DatabaseHelper.updateArchiveStatus(contactId);
 		response.sendRedirect("admin/contactus/requests");
 	}
-	
 }

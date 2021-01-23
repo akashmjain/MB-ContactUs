@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.akashmjain.beans.Contact;
+
 public class DatabaseHelper {
 	private static final String JDBC_DRIVER = "org.postgresql.Driver";
 	private static final String DB_URL = "jdbc:postgresql://localhost:5432/contact_us";
@@ -70,9 +72,9 @@ public class DatabaseHelper {
         }	
 	}
 	
-	public static boolean saveContactInformation(String fullName, String email, String comment) {
+	public static boolean saveContactInformation(Contact contact) {
 		String query = "insert into contacts(name, email, message, is_archived) values "
-				+ "('"+fullName+"','"+email+"', '"+comment+"', false);";
+				+ "('"+contact.getFullName()+"','"+contact.getEmail()+"', '"+contact.getComment()+"', "+contact.getIsArchived()+");";
 		Connection conn;
 		try {
             Class.forName(JDBC_DRIVER);
