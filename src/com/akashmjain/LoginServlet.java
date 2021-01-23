@@ -21,25 +21,8 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/login.jsp";
-		request.getRequestDispatcher(url).include(request, response);
-		String username = request.getParameter("username") == null ? "" : request.getParameter("username");
-		String password = request.getParameter("password") == null ? "" : request.getParameter("password");
-		if(validateLogin(username, password)) {
-	        HttpSession session=request.getSession();
-	        session.setAttribute("username", username);
-	        session.setAttribute("password", password);
-	        String dashboardUrl = "/ContactUs/admin/contactus/requests";
-	        response.sendRedirect(dashboardUrl);
-		} else {
-			PrintWriter out = response.getWriter();
-			out.println("Enter proper credentials");
-		}
+		request.getRequestDispatcher(url).forward(request, response);
+
 	}
-	
-	public boolean validateLogin(String username, String password) {
-		ServletContext context = getServletContext();
-		String verUsername = (String)context.getInitParameter("username");
-		String verPassword = (String)context.getInitParameter("password");
-		return (username.equals(verUsername) && password.equals(verPassword));
-	}
+
 }

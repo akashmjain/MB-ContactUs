@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-	<form class="main" action="login" method="post">
+	<form class="main" action="login/validation" method="post">
         <h1 class="heading">Admin Login Page</h1>
         <span class="field">
             <label>Username</label>
