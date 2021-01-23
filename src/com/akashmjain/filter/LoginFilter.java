@@ -18,9 +18,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/admin/login/validation")
+@WebFilter("/admin/contactus/requests")
 public class LoginFilter implements Filter {
-
 	public void destroy() {}
 	
 	public void init(FilterConfig fConfig) throws ServletException {}
@@ -28,10 +27,13 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		
 		PrintWriter out = res.getWriter();
-		String username = request.getParameter("username") == null ? "" : request.getParameter("username");
-		String password = request.getParameter("password") == null ? "" : request.getParameter("password");
+		String username = req.getParameter("username") == null ? "" : req.getParameter("username");
+		String password = req.getParameter("password") == null ? "" : req.getParameter("password");
 		if(validateLogin(username, password, request)) {
+			
 			chain.doFilter(request, response);    
 		} else {
 			out.println("Enter proper credentials");
@@ -41,6 +43,10 @@ public class LoginFilter implements Filter {
 		ServletContext context = req.getServletContext();
 		String verUsername = (String)context.getInitParameter("username");
 		String verPassword = (String)context.getInitParameter("password");
+		System.out.println(username);
+		System.out.println(password);
+		System.out.println("asdsada");
 		return (username.equals(verUsername) && password.equals(verPassword));
 	}
 }
+

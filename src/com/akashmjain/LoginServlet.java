@@ -22,7 +22,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/login.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
-
+//		String username = request.getParameter("username");
+//		String password = request.getParameter("password");
+//		HttpSession session = request.getSession();
+//		session.setAttribute("username", username);
+//		session.setAttribute("password", password);
+//		String dashboardUrl = "contactus/requests";
+//		response.sendRedirect(dashboardUrl);
 	}
 
 }
