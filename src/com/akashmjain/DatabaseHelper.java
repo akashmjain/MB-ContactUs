@@ -70,7 +70,7 @@ public class DatabaseHelper {
         }	
 	}
 	
-	public static void saveContactInformation(String fullName, String email, String comment) {
+	public static boolean saveContactInformation(String fullName, String email, String comment) {
 		String query = "insert into contacts(name, email, message, is_archived) values "
 				+ "('"+fullName+"','"+email+"', '"+comment+"', false);";
 		Connection conn;
@@ -79,10 +79,12 @@ public class DatabaseHelper {
             conn = DriverManager.getConnection(DB_URL, DB_USER_NAME, DB_USER_PASSWORD);
             Statement statement = conn.createStatement();
             int code = statement.executeUpdate(query);
-            conn.close();   
+            conn.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
+            return false;
         }
 	}
 
