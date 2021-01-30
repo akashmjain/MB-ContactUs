@@ -11,20 +11,19 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 @WebFilter("/contactus/save")
 public class ContactFilter implements Filter {
+	@Override
 	public void destroy() {}
 	
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {}
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletResponse res = (HttpServletResponse) response;
-		HttpServletRequest req = (HttpServletRequest) request;
-		PrintWriter out = res.getWriter();
+		PrintWriter out = response.getWriter();
 		String fullName = request.getParameter("full_name");
 		String email = request.getParameter("email");
 		String comment = request.getParameter("comment");

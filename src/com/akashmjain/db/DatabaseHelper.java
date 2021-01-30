@@ -105,7 +105,7 @@ public class DatabaseHelper {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, DB_USER_NAME, DB_USER_PASSWORD);
             Statement statement = conn.createStatement();
-            int code = statement.executeUpdate(query);
+            statement.executeUpdate(query);
             conn.close();
             return true;
         } catch (Exception e) {
