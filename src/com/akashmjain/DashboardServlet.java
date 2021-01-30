@@ -31,14 +31,9 @@ public class DashboardServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = getServletContext();
-		HttpSession session = request.getSession();
-		if(session.getAttribute("username") != null) {
-			String dashboardURL = "/dashboard.jsp";
-			List<Contact> contactList = DatabaseHelper.getContacts();
-			request.setAttribute("contacts", contactList);
-			RequestDispatcher rd = request.getRequestDispatcher(dashboardURL);
-			rd.forward(request, response);
+		if(request.getSession().getAttribute("username") != null) {
+			request.setAttribute("contacts", DatabaseHelper.getContacts());
+			request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 		} else {
 			response.getWriter().println("Please Login First");
 		}

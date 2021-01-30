@@ -21,9 +21,7 @@ public class ArchiveUpdateServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String contactId = request.getParameter("contact_id");
-		PrintWriter	out = response.getWriter();
-		DatabaseHelper.updateArchiveStatus(contactId);
+		DatabaseHelper.updateArchiveStatus(request.getParameter("contact_id"));
 		response.sendRedirect("admin/contactus/requests");
 	}
 }

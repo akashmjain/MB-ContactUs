@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 	
-	public boolean validateLogin(String username, String password) {
+	private boolean validateLogin(String username, String password) {
 		ServletContext context = getServletContext();
 		String verUsername = (String)context.getInitParameter("username");
 		String verPassword = (String)context.getInitParameter("password");

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.akashmjain.beans.Contact;
 
 @WebServlet("/contactus/save")
-public class SaveContactServelet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+// change spelling 
+public class SaveContactServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -24,11 +24,10 @@ public class SaveContactServelet extends HttpServlet {
 		contact.setEmail(request.getParameter("email"));
 		contact.setComment(request.getParameter("comment"));
 		contact.setIsArchived(false);
-		
-		if(DatabaseHelper.saveContactInformation(contact)) {
+		// after if space is required
+		if (DatabaseHelper.saveContactInformation(contact)) {
 			response.getWriter().println("data saved successfully");
-		}
-		else {
+		} else {
 			response.getWriter().println("Internal Error Occured please try again after some time");
 		}
 	}

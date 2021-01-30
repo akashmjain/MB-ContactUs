@@ -71,8 +71,11 @@
             <h3 class="full-name">${contact.fullName}</h3>
             <p class="comment">${contact.comment}</p>
             <div class="links">
-                <a class="email" href="mailto:akash@example.com">${contact.email}</a>
-                <a class="archive" href="/ContactUs/updateData?contact_id=${contact.contactId}">${contact.archiveButtonText}</a>
+                <a class="email" href="mailto:${contact.email}">${contact.email}</a>
+                <c:set var="btnText" scope="session" value = "ARCHIVED"/>
+                <c:if test = "${contact.isArchived}" >
+                	<a class="archive" href="/ContactUs/updateData?contact_id=${contact.contactId}">${contact.isArchived}</a>
+                </c:if>
             </div>
         </li>
 	</c:forEach>

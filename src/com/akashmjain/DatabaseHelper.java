@@ -44,6 +44,7 @@ public class DatabaseHelper {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
         }
+		
 		contactList.sort(new Comparator<Contact>() {
 			public int compare(Contact c1, Contact c2) {
 				return c1.getContactId().compareTo(c2.getContactId());
