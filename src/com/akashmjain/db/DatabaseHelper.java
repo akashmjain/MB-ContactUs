@@ -1,14 +1,11 @@
-package com.akashmjain;
+package com.akashmjain.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.sql.Date;
 import java.util.List;
 
 import com.akashmjain.beans.Contact;
@@ -36,14 +33,14 @@ public class DatabaseHelper {
 	public static List<Contact> getArchivedContacts() {
 		String query = "select * from "+CONTACT_TABLE_NAME+" where is_archived = true;";
 		List<Contact> contacts = getContactsGivenQuery(query);
-        contacts.sort((c1, c2) -> (((Contact)c2).getTimestamp()).compareTo(((Contact)c1).getTimestamp()));
+        contacts.sort((c1, c2) -> (c2.getTimestamp()).compareTo(c1.getTimestamp()));
 		return contacts;
 	}
 	
 	public static List<Contact> getUnArchivedContacts() {
 		String query = "select * from "+CONTACT_TABLE_NAME+" where is_archived = false;";
 		List<Contact> contacts = getContactsGivenQuery(query);
-		contacts.sort((c1, c2) -> (((Contact)c2).getTimestamp()).compareTo(((Contact)c1).getTimestamp()));
+		contacts.sort((c1, c2) -> (c2.getTimestamp()).compareTo(c1.getTimestamp()));
 		return contacts;
 	}
 	
@@ -72,6 +69,7 @@ public class DatabaseHelper {
         }
 		
 		contactList.sort(new Comparator<Contact>() {
+			@Override
 			public int compare(Contact c1, Contact c2) {
 				return c1.getContactId().compareTo(c2.getContactId());
 			}

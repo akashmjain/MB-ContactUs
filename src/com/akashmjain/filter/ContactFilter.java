@@ -25,9 +25,9 @@ public class ContactFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpServletRequest req = (HttpServletRequest) request;
 		PrintWriter out = res.getWriter();
-		String fullName = request.getParameter("full_name") == null ? "" : request.getParameter("full_name");
-		String email = request.getParameter("email") == null ? "" : request.getParameter("email");
-		String comment = request.getParameter("comment") == null ? "" : request.getParameter("comment");
+		String fullName = request.getParameter("full_name");
+		String email = request.getParameter("email");
+		String comment = request.getParameter("comment");
 		if(validateContactInfo(fullName, email, comment)) {
 			chain.doFilter(request, response);	
 		} else {

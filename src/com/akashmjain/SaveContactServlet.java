@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.akashmjain.beans.Contact;
+import com.akashmjain.db.DatabaseHelper;
 
 @WebServlet("/contactus/save")
 public class SaveContactServlet extends HttpServlet {

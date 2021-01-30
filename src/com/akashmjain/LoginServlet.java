@@ -13,20 +13,24 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/admin/login")
 public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/login.jsp";
 		request.getRequestDispatcher(url).include(request, response);
-		String username = request.getParameter("username") == null ? "" : request.getParameter("username");
-		String password = request.getParameter("password") == null ? "" : request.getParameter("password");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		if(validateLogin(username, password)) {
 	        HttpSession session=request.getSession();
 	        session.setAttribute("username", username);
 	        session.setAttribute("password", password);
-	        String dashboardUrl = "/ContactUs/admin/contactus/requests";
+	        String dashboardUrl = "/contactus/admin/contactus/requests";
 	        response.sendRedirect(dashboardUrl);
 		} else {
 			PrintWriter out = response.getWriter();
@@ -36,8 +40,8 @@ public class LoginServlet extends HttpServlet {
 	
 	private boolean validateLogin(String username, String password) {
 		ServletContext context = getServletContext();
-		String verUsername = (String)context.getInitParameter("username");
-		String verPassword = (String)context.getInitParameter("password");
+		String verUsername = context.getInitParameter("username");
+		String verPassword = context.getInitParameter("password");
 		return (username.equals(verUsername) && password.equals(verPassword));
 	}
 }
