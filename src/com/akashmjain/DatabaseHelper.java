@@ -23,6 +23,20 @@ public class DatabaseHelper {
 	
 	public static List<Contact> getContacts() {
 		String query = "select * from contacts;";
+		return getContactsGivenQuery(query);
+	}
+	
+	public static List<Contact> getArchivedContacts() {
+		String query = "select * from contacts where is_archived = true;";
+		return getContactsGivenQuery(query);
+	}
+	
+	public static List<Contact> getUnArchivedContacts() {
+		String query = "select * from contacts where is_archived = false;";
+		return getContactsGivenQuery(query);
+	}
+	
+	private static List<Contact> getContactsGivenQuery(String query) {
 		List<Contact> contactList = new ArrayList<>();
 		Connection conn;
 		try {

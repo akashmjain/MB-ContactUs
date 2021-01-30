@@ -32,7 +32,8 @@ public class DashboardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("username") != null) {
-			request.setAttribute("contacts", DatabaseHelper.getContacts());
+			request.setAttribute("archivedContacts", DatabaseHelper.getArchivedContacts());
+			request.setAttribute("unArchivedContacts", DatabaseHelper.getUnArchivedContacts());
 			request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 		} else {
 			response.getWriter().println("Please Login First");
