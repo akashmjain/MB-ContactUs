@@ -107,6 +107,7 @@
 	                <a class="email" href="mailto:akash@example.com">${contact.email}</a>
 	                <a class="archive" href="/ContactUs/updateData?contact_id=${contact.contactId}">UN-ARCHIVE</a>
 	            </div>
+	            <p>${contact.timestamp}</p>
 	        </li>
 		</c:forEach>
 		</ul>
@@ -121,9 +122,10 @@
 	            <h3 class="full-name">${contact.fullName}</h3>
 	            <p class="comment">${contact.comment}</p>
 	            <div class="links">
-	                <a class="email" href="mailto:akash@example.com">${contact.email}</a>
+	                <a class="email" href="mailto:${contact.email}">${contact.email}</a>
 	                <a class="archive" href="/ContactUs/updateData?contact_id=${contact.contactId}">ARCHIVE</a>
 	            </div>
+	           	<p>${contact.timestamp}</p>
 	        </li>
 		</c:forEach>
 		</ul>

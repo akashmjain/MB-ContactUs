@@ -1,15 +1,24 @@
 package com.akashmjain.beans;
 
+import java.sql.Timestamp;
 
 
 public class Contact {
-	// @TODO delete all archiveButtonText code
 	private String contactId;
 	private String fullName;
 	private String email;
 	private String comment;
 	private boolean isArchived;
+	private Timestamp timestamp;
 	
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	public String getContactId() {
 		return contactId;
 	}
@@ -33,12 +42,15 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getComment() {
 		return comment;
 	}
+	
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
 	public boolean getIsArchived() {
 		return isArchived;
 	} 
